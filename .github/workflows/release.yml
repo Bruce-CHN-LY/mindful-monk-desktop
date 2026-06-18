@@ -13,8 +13,8 @@ jobs:
   windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.13"
           cache: pip
@@ -30,7 +30,7 @@ jobs:
         run: |
           New-Item -ItemType Directory -Force release-assets
           Compress-Archive -Path dist/Mindful-Monk.exe -DestinationPath release-assets/mindful-monk-windows-x64.zip
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: windows-package
           path: release-assets/*.zip
@@ -38,8 +38,8 @@ jobs:
   macos:
     runs-on: macos-14
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.13"
           cache: pip
@@ -54,7 +54,7 @@ jobs:
           mkdir -p release-assets
           arch="$(uname -m)"
           ditto -c -k --sequesterRsrc --keepParent "dist/一念小沙弥.app" "release-assets/mindful-monk-macos-${arch}.zip"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: macos-package
           path: release-assets/*.zip
@@ -66,8 +66,8 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
         with:
           pattern: "*-package"
           path: release-assets
