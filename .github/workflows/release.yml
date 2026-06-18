@@ -1,0 +1,83 @@
+name: Build and publish release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Test
+        run: |
+          python -m pip install -r requirements-dev.txt
+          python -m pytest -q
+      - name: Build Windows executable
+        shell: pwsh
+        run: ./scripts/build_windows.ps1
+      - name: Package Windows executable
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force release-assets
+          Compress-Archive -Path dist/Mindful-Monk.exe -DestinationPath release-assets/mindful-monk-windows-x64.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-package
+          path: release-assets/*.zip
+
+  macos:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Test
+        run: |
+          python -m pip install -r requirements-dev.txt
+          python -m pytest -q
+      - name: Build macOS application
+        run: ./scripts/build_macos.sh
+      - name: Package macOS application
+        run: |
+          mkdir -p release-assets
+          arch="$(uname -m)"
+          ditto -c -k --sequesterRsrc --keepParent "dist/一念小沙弥.app" "release-assets/mindful-monk-macos-${arch}.zip"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: macos-package
+          path: release-assets/*.zip
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [windows, macos]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: "*-package"
+          path: release-assets
+          merge-multiple: true
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create "$GITHUB_REF_NAME" release-assets/*.zip
+          --repo "$GITHUB_REPOSITORY"
+          --verify-tag
+          --title "一念小沙弥 $GITHUB_REF_NAME"
+          --notes-file RELEASE_NOTES.md

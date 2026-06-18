@@ -1,0 +1,24 @@
+{
+  "reminder_interval_minutes": 45,
+  "random_reminder_enabled": true,
+  "random_reminder_min_minutes": 60,
+  "random_reminder_max_minutes": 120,
+  "quiet_hours_enabled": true,
+  "quiet_start": "22:30",
+  "quiet_end": "07:00",
+  "character_scale": 1.0,
+  "golden_aura_enabled": true,
+  "click_through": false,
+  "launch_at_login": false,
+  "window_position": {
+    "x": 60,
+    "y": 520
+  },
+  "animation_intervals_ms": {
+    "idle": 300,
+    "prayer": 220,
+    "breathing": 380,
+    "bell": 190
+  },
+  "enabled_categories": ["mind", "breath", "compassion", "morning_night"]
+}

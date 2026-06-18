@@ -1,0 +1,240 @@
+[
+  {
+    "id": "mind_001",
+    "text": "这一念起时，先不要跟着走。",
+    "category": "mind",
+    "weight": 3,
+    "enabled": true
+  },
+  {
+    "id": "mind_002",
+    "text": "看见执着，便已有松动。",
+    "category": "mind",
+    "weight": 3,
+    "enabled": true
+  },
+  {
+    "id": "mind_003",
+    "text": "心若向外驰，轻轻带它回来。",
+    "category": "mind",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "breath_001",
+    "text": "放下分别，回到呼吸。",
+    "category": "breath",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "compassion_001",
+    "text": "对自己，也可温柔一点。",
+    "category": "compassion",
+    "weight": 1,
+    "enabled": true
+  },
+  {
+    "id": "morning_night_001",
+    "text": "愿你今夜安住此心，不逐妄念。",
+    "category": "morning_night",
+    "weight": 1,
+    "enabled": true
+  },
+  {
+    "id": "mind_004",
+    "text": "念头只是来访，不必把它留下过夜。",
+    "category": "mind",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "mind_005",
+    "text": "先如实看见，再决定要不要回应。",
+    "category": "mind",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "mind_006",
+    "text": "心里有浪时，不必责怪水面。",
+    "category": "mind",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "mind_007",
+    "text": "这一刻不必想通，只须看清。",
+    "category": "mind",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "mind_008",
+    "text": "别急着成为更好的人，先回来做此刻的人。",
+    "category": "mind",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "mind_009",
+    "text": "觉察不是责问，是给心留一盏灯。",
+    "category": "mind",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "mind_010",
+    "text": "念起时知道念起，已经足够。",
+    "category": "mind",
+    "weight": 3,
+    "enabled": true
+  },
+  {
+    "id": "breath_002",
+    "text": "吸气时知道吸气，呼气时知道呼气。",
+    "category": "breath",
+    "weight": 3,
+    "enabled": true
+  },
+  {
+    "id": "breath_003",
+    "text": "不必深呼吸，只须完整地呼吸一次。",
+    "category": "breath",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "breath_004",
+    "text": "让呼气比刚才慢一点，心会听见。",
+    "category": "breath",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "breath_005",
+    "text": "这一口气无需完美，只需被你觉察。",
+    "category": "breath",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "breath_006",
+    "text": "肩膀放松一点，让呼吸自己找到路。",
+    "category": "breath",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "breath_007",
+    "text": "世界可以再等一口气。",
+    "category": "breath",
+    "weight": 3,
+    "enabled": true
+  },
+  {
+    "id": "breath_008",
+    "text": "呼吸回来时，你也回来了。",
+    "category": "breath",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "compassion_002",
+    "text": "你不必因疲倦，再责怪自己一次。",
+    "category": "compassion",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "compassion_003",
+    "text": "愿你对自己的迟缓，也有一点耐心。",
+    "category": "compassion",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "compassion_004",
+    "text": "不知道怎么办时，先不要为难自己。",
+    "category": "compassion",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "compassion_005",
+    "text": "把对朋友的温柔，也分一点给自己。",
+    "category": "compassion",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "compassion_006",
+    "text": "今日已尽力的部分，值得被看见。",
+    "category": "compassion",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "compassion_007",
+    "text": "温柔不是纵容，是不再用伤害催促改变。",
+    "category": "compassion",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "compassion_008",
+    "text": "愿此刻受苦的心，先有一处可坐。",
+    "category": "compassion",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "morning_night_002",
+    "text": "晨光已到，今日只从眼前一步开始。",
+    "category": "morning_night",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "morning_night_003",
+    "text": "醒来先别奔忙，听一听清晨的安静。",
+    "category": "morning_night",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "morning_night_004",
+    "text": "愿今日所遇，成为观照而非负担。",
+    "category": "morning_night",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "morning_night_005",
+    "text": "天色渐晚，未完成的事可以先放在岸边。",
+    "category": "morning_night",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "morning_night_006",
+    "text": "这一日无论如何，都已经走到了这里。",
+    "category": "morning_night",
+    "weight": 2,
+    "enabled": true
+  },
+  {
+    "id": "morning_night_007",
+    "text": "睡前不审判今天，只轻轻把它放下。",
+    "category": "morning_night",
+    "weight": 3,
+    "enabled": true
+  },
+  {
+    "id": "morning_night_008",
+    "text": "夜深了，让心也从白日的喧响中退席。",
+    "category": "morning_night",
+    "weight": 2,
+    "enabled": true
+  }
+]

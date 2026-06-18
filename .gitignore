@@ -1,0 +1,14 @@
+.DS_Store
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+build/
+dist/
+*.spec
+app/user_data/
+release-assets/
+outputs/
+work/
+.idea/
+.vscode/
