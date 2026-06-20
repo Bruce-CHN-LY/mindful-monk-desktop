@@ -1,4 +1,4 @@
-# 一念小沙弥 v1.0.0
+# 一念小沙弥 v1.0.1
 
 一个安静待在桌面的陪伴型小沙弥。它会用偈语、观息、钟声和“记一念”，帮你轻轻回到当下。
 
@@ -18,9 +18,17 @@
 - 自定义偈语、静默时段、大小与动画速度设置
 - 数据仅保存在本机
 
+## 本次改进
+
+- 修复偈语去重池耗尽后可能跳出已选类别的问题
+- 记录、设置或自定义偈语文件损坏时保留 `.broken*.json` 原始备份
+- 修复连续气泡可能被上一条计时器提前关闭的问题
+- 删除念迹或自定义偈语前增加确认
+- 增加 Windows、macOS、Linux 三系统持续集成与依赖更新检查
+
 ---
 
-# Mindful Monk v1.0.0
+# Mindful Monk v1.0.1
 
 A quiet desktop companion that uses short reflections, breathing, a gentle bell,
 and mindful notes to help you return to the present moment.
@@ -30,3 +38,11 @@ and mindful notes to help you return to the present moment.
 
 The macOS build is ad-hoc signed and not Apple-notarized. If Gatekeeper blocks
 it, right-click the app and choose **Open**.
+
+## Improvements in this release
+
+- Keep reflection category filters intact when the recent-item pool is exhausted
+- Preserve broken settings, notes, and custom reflections as `.broken*.json` backups
+- Prevent an older message timer from hiding a newer message
+- Confirm before deleting thought traces or custom reflections
+- Add CI across Windows, macOS, and Linux, plus dependency update monitoring

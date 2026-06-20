@@ -7,6 +7,7 @@ from pathlib import Path
 from uuid import uuid4
 
 from app.constants import DATA_DIR, NOTES_PATH
+from app.data.file_recovery import backup_broken_file
 
 
 class NoteStore:
@@ -44,6 +45,9 @@ class NoteStore:
             return []
         try:
             notes = json.loads(self.notes_path.read_text(encoding="utf-8"))
-            return notes if isinstance(notes, list) else []
-        except (json.JSONDecodeError, OSError):
+            if not isinstance(notes, list):
+                raise TypeError("Notes must be a JSON list")
+            return [note for note in notes if isinstance(note, dict)]
+        except (json.JSONDecodeError, OSError, TypeError):
+            backup_broken_file(self.notes_path)
             return []

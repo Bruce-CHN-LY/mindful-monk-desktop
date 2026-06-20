@@ -48,6 +48,8 @@ jobs:
           python -m pip install -r requirements-dev.txt
           python -m pytest -q
       - name: Build macOS application
+        env:
+          APP_VERSION: ${{ github.ref_name }}
         run: ./scripts/build_macos.sh
       - name: Package macOS application
         run: |

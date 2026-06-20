@@ -27,3 +27,16 @@ def test_invalid_custom_quote_file_does_not_hide_built_ins(tmp_path):
     custom_path.write_text("not-json", encoding="utf-8")
 
     assert QuoteStore(base_path, custom_path, None).load_quotes() == [{"id": "a", "text": "A"}]
+    assert custom_path.with_suffix(".broken.json").exists()
+
+
+def test_invalid_custom_quote_structure_is_backed_up(tmp_path):
+    base_path = tmp_path / "quotes.json"
+    custom_path = tmp_path / "custom_quotes.json"
+    base_path.write_text("[]", encoding="utf-8")
+    custom_path.write_text('{"text": "not-a-list"}', encoding="utf-8")
+
+    store = QuoteStore(base_path, custom_path, None)
+
+    assert store.load_custom_quotes() == []
+    assert custom_path.with_suffix(".broken.json").exists()

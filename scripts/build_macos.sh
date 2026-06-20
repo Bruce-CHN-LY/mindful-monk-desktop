@@ -3,6 +3,8 @@ set -e
 
 ROOT="${0:A:h:h}"
 cd "$ROOT"
+VERSION="${APP_VERSION:-1.0.0}"
+VERSION="${VERSION#v}"
 
 if [[ ! -x .venv/bin/python ]]; then
   for candidate in python3.13 python3.12 python3.11; do
@@ -38,9 +40,9 @@ fi
   mindful_monk.py
 
 PLIST="dist/一念小沙弥.app/Contents/Info.plist"
-/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString 1.0.0" "$PLIST"
-/usr/libexec/PlistBuddy -c "Add :CFBundleVersion string 1.0.0" "$PLIST" 2>/dev/null || \
-  /usr/libexec/PlistBuddy -c "Set :CFBundleVersion 1.0.0" "$PLIST"
+/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION" "$PLIST"
+/usr/libexec/PlistBuddy -c "Add :CFBundleVersion string $VERSION" "$PLIST" 2>/dev/null || \
+  /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $VERSION" "$PLIST"
 /usr/libexec/PlistBuddy -c "Add :LSUIElement bool true" "$PLIST" 2>/dev/null || \
   /usr/libexec/PlistBuddy -c "Set :LSUIElement true" "$PLIST"
 codesign --force --deep --sign - "dist/一念小沙弥.app"

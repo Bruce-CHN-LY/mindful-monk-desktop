@@ -12,6 +12,7 @@ from PySide6.QtWidgets import (
     QLabel,
     QListWidget,
     QListWidgetItem,
+    QMessageBox,
     QPlainTextEdit,
     QPushButton,
     QVBoxLayout,
@@ -188,6 +189,15 @@ class NoteHistoryWindow(QWidget):
     def _delete_selected(self):
         item = self.list.currentItem()
         if item is None:
+            return
+        answer = QMessageBox.question(
+            self,
+            "删除念迹",
+            "确定删除这条念迹吗？删除后无法恢复。",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No,
+        )
+        if answer != QMessageBox.Yes:
             return
         if self.note_store.delete_note_at(item.data(Qt.UserRole)):
             self.reload()

@@ -5,6 +5,7 @@ from PySide6.QtWidgets import (
     QLabel,
     QListWidget,
     QListWidgetItem,
+    QMessageBox,
     QPlainTextEdit,
     QPushButton,
     QVBoxLayout,
@@ -107,6 +108,15 @@ class QuoteEditorWindow(QWidget):
     def _delete_selected(self):
         item = self.list.currentItem()
         if item is None or not item.data(Qt.UserRole + 1):
+            return
+        answer = QMessageBox.question(
+            self,
+            "删除自定义偈语",
+            "确定删除这句自定义偈语吗？删除后无法恢复。",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No,
+        )
+        if answer != QMessageBox.Yes:
             return
         self.quote_store.delete_quote(item.data(Qt.UserRole))
         self.hint.setText("已删除这句自定义偈语。")

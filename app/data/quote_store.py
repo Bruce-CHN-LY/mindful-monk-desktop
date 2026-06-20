@@ -6,6 +6,7 @@ from pathlib import Path
 from uuid import uuid4
 
 from app.constants import CUSTOM_QUOTES_PATH, QUOTES_PATH, SCRIPTURE_QUOTES_PATH
+from app.data.file_recovery import backup_broken_file
 
 
 class QuoteStore:
@@ -24,7 +25,7 @@ class QuoteStore:
         return self._read_list(self.base_path) + scripture + self.load_custom_quotes()
 
     def load_custom_quotes(self) -> list[dict]:
-        return self._read_list(self.custom_path)
+        return self._read_list(self.custom_path, backup_invalid=True)
 
     def add_quote(self, text: str, category: str) -> dict:
         quote = {
@@ -48,13 +49,17 @@ class QuoteStore:
         return True
 
     @staticmethod
-    def _read_list(path: Path) -> list[dict]:
+    def _read_list(path: Path, backup_invalid: bool = False) -> list[dict]:
         if not path.exists():
             return []
         try:
             quotes = json.loads(path.read_text(encoding="utf-8"))
-            return quotes if isinstance(quotes, list) else []
-        except (json.JSONDecodeError, OSError):
+            if not isinstance(quotes, list):
+                raise TypeError("Quotes must be a JSON list")
+            return [quote for quote in quotes if isinstance(quote, dict)]
+        except (json.JSONDecodeError, OSError, TypeError):
+            if backup_invalid:
+                backup_broken_file(path)
             return []
 
     def _save_custom_quotes(self, quotes: list[dict]):

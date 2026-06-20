@@ -6,6 +6,7 @@ from copy import deepcopy
 from pathlib import Path
 
 from app.constants import DATA_DIR, DEFAULT_SETTINGS_PATH, SETTINGS_PATH
+from app.data.file_recovery import backup_broken_file
 
 
 class SettingsStore:
@@ -22,12 +23,10 @@ class SettingsStore:
 
         try:
             current = self._read_json(self.settings_path)
+            if not isinstance(current, dict):
+                raise TypeError("Settings must be a JSON object")
         except (json.JSONDecodeError, OSError, TypeError):
-            backup = self.settings_path.with_suffix(".broken.json")
-            try:
-                self.settings_path.replace(backup)
-            except OSError:
-                pass
+            backup_broken_file(self.settings_path)
             self.save(defaults)
             return defaults
         return self._deep_merge(defaults, current)

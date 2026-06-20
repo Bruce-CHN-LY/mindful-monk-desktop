@@ -22,6 +22,9 @@ class MessageBubble(QWidget):
         font.setPointSize(10)
         self.label.setFont(font)
         self.label.setStyleSheet("color: #3b3128; padding: 8px;")
+        self.hide_timer = QTimer(self)
+        self.hide_timer.setSingleShot(True)
+        self.hide_timer.timeout.connect(self.hide)
         self.resize(210, 72)
         self.hide()
 
@@ -47,7 +50,7 @@ class MessageBubble(QWidget):
         self.resize(self.width(), max(72, min(content_height + 22, 126)))
         self.show()
         self.raise_()
-        QTimer.singleShot(duration_ms, self.hide)
+        self.hide_timer.start(duration_ms)
 
     def paintEvent(self, event):
         painter = QPainter(self)
