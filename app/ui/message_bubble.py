@@ -14,6 +14,7 @@ class MessageBubble(QWidget):
         )
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setAttribute(Qt.WA_TransparentForMouseEvents)
+        self.setAttribute(Qt.WA_ShowWithoutActivating)
         self.pointer_side = "right"
         self.label = QLabel("", self)
         self.label.setWordWrap(True)
@@ -24,9 +25,10 @@ class MessageBubble(QWidget):
         self.label.setStyleSheet("color: #3b3128; padding: 8px;")
         self.hide_timer = QTimer(self)
         self.hide_timer.setSingleShot(True)
-        self.hide_timer.timeout.connect(self.hide)
+        self.hide_timer.timeout.connect(self.dismiss_message)
         self.resize(210, 72)
-        self.hide()
+        self.setWindowOpacity(0.0)
+        self.show()
 
     def resizeEvent(self, event):
         self._layout_label()
@@ -48,9 +50,12 @@ class MessageBubble(QWidget):
         content_width = self.width() - 28
         content_height = self.label.heightForWidth(content_width)
         self.resize(self.width(), max(72, min(content_height + 22, 126)))
-        self.show()
-        self.raise_()
+        self.setWindowOpacity(1.0)
         self.hide_timer.start(duration_ms)
+
+    def dismiss_message(self):
+        self.hide_timer.stop()
+        self.setWindowOpacity(0.0)
 
     def paintEvent(self, event):
         painter = QPainter(self)

@@ -14,6 +14,7 @@ invites you to notice the present thought and return to one breath.
 - 144 reflections, including 110 excerpts from the Samyukta Agama and Diamond Sutra
 - Scripture excerpts retain source, reference, and excerpt metadata, separately from built-in and personal content
 - One-minute breathing session, gentle bell, scheduled or random reminders, and quiet hours
+- Non-activating reflection overlays that do not interrupt drawing, writing, or typing
 - **Record a thought**: select a current state and optionally add a short note
 - **Thought traces**: review recent notes, see a small summary, or delete entries
 - Custom reflections, character scaling, animation speed, and click-through mode

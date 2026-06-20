@@ -36,6 +36,7 @@ class DesktopPetWindow(QWidget):
         )
         self.setWindowFlags(self._base_window_flags)
         self.setAttribute(Qt.WA_TranslucentBackground)
+        self.setAttribute(Qt.WA_ShowWithoutActivating)
 
         self.drag_offset = QPoint()
         self.press_position = QPoint()
@@ -240,7 +241,6 @@ class DesktopPetWindow(QWidget):
     def _show_text(self, text: str):
         self.message_bubble.show_message(text, MESSAGE_DURATION_MS)
         self._reposition_bubble()
-        self.message_bubble.raise_()
         self.repaint()
         if self.restore_timer_id is not None:
             self.killTimer(self.restore_timer_id)
@@ -427,7 +427,7 @@ class DesktopPetWindow(QWidget):
         self.tray_panel.hide()
         if self.isVisible():
             self.quick_menu.hide()
-            self.message_bubble.hide()
+            self.message_bubble.dismiss_message()
             self.hide()
             self._user_hidden = True
             self.tray_panel.set_pet_visible(False)
@@ -458,7 +458,7 @@ class DesktopPetWindow(QWidget):
         if not self._quitting:
             event.ignore()
             self.quick_menu.hide()
-            self.message_bubble.hide()
+            self.message_bubble.dismiss_message()
             self.hide()
             self._user_hidden = True
             if hasattr(self, "tray_panel"):
