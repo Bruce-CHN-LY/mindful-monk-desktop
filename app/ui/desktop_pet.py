@@ -85,7 +85,7 @@ class DesktopPetWindow(QWidget):
         self.bell_sound = QSoundEffect(self)
         if BELL_SOUND_PATH.exists():
             self.bell_sound.setSource(QUrl.fromLocalFile(str(BELL_SOUND_PATH)))
-            self.bell_sound.setVolume(0.28)
+            self.bell_sound.setVolume(0.65)
 
         self.reminder_service = ReminderService(self.settings_store, self.presence_service)
         self.reminder_service.reminder_due.connect(self._show_reminder)
